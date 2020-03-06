@@ -8,6 +8,8 @@
     <button type="submit">Add Service</button>
 </form>
 
+<strong>@error('name') {{ $message}} @enderror</strong>
+
 <ul>
     @foreach ($services as $service)
         <li>{{ $service->name}}</li >
