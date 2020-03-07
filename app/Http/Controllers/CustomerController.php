@@ -8,7 +8,6 @@ class CustomerController extends Controller
 {
     public function index(){
         $customers = \App\Customer::all();
-        // dd($customers);
         return view('customer.index', compact('customers'));
     }
 
@@ -26,14 +25,22 @@ class CustomerController extends Controller
         return redirect('/customer');
     }
 
-    public function show($customerId){
-        $customer = \App\Customer::findorFail($customerId);
-
+    public function show(\App\Customer $customer){
         return view('customer.show', compact('customer'));
     }
 
-    public function edit($customer){
-        return view('customer.edit', compact('App\Customer customer'));
-        dd('hey');
+    public function edit(\App\Customer $customer){
+        return view('customer.edit', compact('customer'));
+    }
+
+    public function update(\App\Customer $customer){
+        $data = request()->validate([
+            'name'=>'required',
+            'email'=> 'required|email',
+        ]);
+
+        $customer->update($data);
+
+        return redirect('/customer');
     }
 }

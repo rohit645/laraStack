@@ -22,11 +22,11 @@ Route::get('/about', 'HelloController@about');
 Route::get('/service'  , 'ServiceController@index');
 Route::post('/service'  , 'ServiceController@store');
 
-Route::get('/customer'  , 'CustomerController@index');
-Route::get('/customer/create'  , 'CustomerController@create');
+Route::get('/customer', 'CustomerController@index');
+Route::get('/customer/create', 'CustomerController@create');
 
-Route::post('/customer'  , 'CustomerController@store');
+Route::post('/customer', 'CustomerController@store');
 
-Route::get('/customer/{customerID}'  , 'CustomerController@show');
-Route::get('/customer/{customerID}/edit'  , 'CustomerController@edit');
-
+Route::get('/customer/{customer}', 'CustomerController@show');
+Route::get('/customer/{customer}/edit', 'CustomerController@edit');
+Route::patch('/customer/{customer}', 'CustomerController@update');
