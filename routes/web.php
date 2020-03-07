@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,12 @@ Route::get('/', function () {
 
 Route::get('/about', 'HelloController@about');
 
+Route::get('/mail', function(){
+    Mail::to('abc@email.com')->send(new WelcomeMail());
+
+    return new WelcomeMail();
+});
+
 Route::get('/service'  , 'ServiceController@index');
 Route::post('/service'  , 'ServiceController@store');
 
@@ -30,3 +38,4 @@ Route::post('/customer', 'CustomerController@store');
 Route::get('/customer/{customer}', 'CustomerController@show');
 Route::get('/customer/{customer}/edit', 'CustomerController@edit');
 Route::patch('/customer/{customer}', 'CustomerController@update');
+Route::delete('/customer/{customer}', 'CustomerController@destroy');
