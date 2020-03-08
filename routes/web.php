@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 Route::get('/about', 'HelloController@about');
 
+Route::get('/pay', 'PaymentController@store');
+
 Route::get('/mail', function(){
     Mail::to('abc@email.com')->send(new WelcomeMail());
 
